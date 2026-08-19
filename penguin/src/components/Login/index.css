@@ -1,0 +1,33 @@
+.button-pair {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.button-pair button {
+    padding: 20px;
+
+}
+
+.form {
+    margin: 20px;
+}
+
+.login-main {
+    background-color: rgba(255, 255, 255, 0.233);
+    border-color: white;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 20px;
+    width: fit-content;
+    margin: 0 auto 0 auto;
+    gap: 20px;
+}
+
+.form input {
+
+    padding: 20px;
+    border-radius: 10px;
+    border-style: none;
+    margin-bottom: 20px;
+}
