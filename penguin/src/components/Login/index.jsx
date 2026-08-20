@@ -30,14 +30,17 @@ class Login extends Component {
             username:username,
             password:password
         }
-        const endPoint = backendDetails.url+"add-user/"
-        const addUserRequest = await fetch(endPoint,{
+        const addUserEndPoint = backendDetails.url+"add-user/"
+        const addUserRequest = await fetch(addUserEndPoint,{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
             body: JSON.stringify(newUserDetails)
         })
+        const responseData = await addUserRequest.json();
+        const responseMessage = responseData.response;
+        return responseMessage;
     }
 
     displaySignUp = () => {

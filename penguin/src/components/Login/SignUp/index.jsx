@@ -2,12 +2,12 @@ import { Component, use } from "react";
 import "./index.css"
 
 class SignUp extends Component {
-    state = {username:"", password:""}
+    state = {username:"", password:"", prompt:""}
 
-    submitForm = (e,addUser,username,password)=>{
+    submitForm = async (e,addUser,username,password)=>{
         e.preventDefault();
-        addUser(username,password)
-        this.setState(()=>({username:"",password:""}))
+        const response = await addUser(username,password)
+        this.setState(()=>({username:"",password:"",prompt:response}))
     }
 
     handleUsername = (e)=>{        
@@ -29,7 +29,7 @@ class SignUp extends Component {
         console.log(e)
     }
     render() {
-        const {username,password} = this.state
+        const {username,password, prompt} = this.state
         const { displaySignUp, addUser } = this.props
         return (
             <form className="login-main" onSubmit={e => this.submitForm(e,addUser,username,password)} action="submit">
@@ -41,6 +41,7 @@ class SignUp extends Component {
                     <label htmlFor="password">Password</label>
                     <input name="password" id="password" value={password} onChange={this.handleUsername} placeholder="falin#*&100" />
                 </div>
+                {prompt&&<p>{prompt}</p>}
                 <div className="button-pair">
                     <button onClick={this.triggerCreateUser}>Create</button>
                     <button onClick={e => this.triggerDisplaySignUp(displaySignUp)}><p>Alreay have an Account</p></button>
