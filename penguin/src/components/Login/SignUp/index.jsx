@@ -41,7 +41,7 @@ class SignUp extends Component {
                     <label htmlFor="password">Password</label>
                     <input name="password" id="password" value={password} onChange={this.handleUsername} placeholder="falin#*&100" />
                 </div>
-                {prompt&&<p>{prompt}</p>}
+                {prompt&&<p className="prompt">{prompt}</p>}
                 <div className="button-pair">
                     <button onClick={this.triggerCreateUser}>Create</button>
                     <button onClick={e => this.triggerDisplaySignUp(displaySignUp)}><p>Alreay have an Account</p></button>

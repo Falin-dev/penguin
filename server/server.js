@@ -47,6 +47,9 @@ app.post("/add-user/", async (req, res) => {
     let response =null
     try {
         const { username, password } = req.body;
+        if (!username || username.trim() ===""){
+            throw new Error("EMPTY_USERNAME");
+        }
         const hashedPassword = async (password) => {
             return await bcrypt.hash(password, 10);
         };
@@ -62,6 +65,9 @@ app.post("/add-user/", async (req, res) => {
     catch (e){
         if(e.code==="SQLITE_CONSTRAINT"){
             response="User Already Exist"
+        }
+        if(e.message === "EMPTY_USERNAME"){
+            response = "Username cannot be empty"
         }
     }
     res.json({response:response})
