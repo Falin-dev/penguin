@@ -17,15 +17,11 @@ const backendDetails = {
 class Login extends Component {
     state = { loginPage: true }
     
+    loginUser = async (username,password)=>{
+        return "hello";
+    }
+
     addUser = async (username,password)=>{
-        // const newUser = {
-        //     id: uuidv4(),
-        //     username:username,
-        //     password:password,
-        // }
-        // userDetails.push(newUser)
-        // console.log("New User Created")
-        // console.log(userDetails)
         const newUserDetails = {
             username:username,
             password:password
@@ -43,6 +39,12 @@ class Login extends Component {
         return responseMessage;
     }
 
+    loginuser = async (username,password)=>{
+
+    }
+
+
+
     displaySignUp = () => {
         console.log("In Login")
         this.setState((prev) => ({ loginPage: !prev.loginPage }))
@@ -51,7 +53,7 @@ class Login extends Component {
         const {loginPage} = this.state
         console.log(loginPage)
         return (
-            loginPage?<SignIn displaySignUp={this.displaySignUp}/>:<SignUp addUser={this.addUser} displaySignUp={this.displaySignUp}/>
+            loginPage?<SignIn logInUser={this.loginUser} displaySignUp={this.displaySignUp}/>:<SignUp addUser={this.addUser} displaySignUp={this.displaySignUp}/>
         )
     }
 }

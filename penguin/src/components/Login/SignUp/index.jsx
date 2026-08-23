@@ -20,14 +20,6 @@ class SignUp extends Component {
 
     }
 
-    triggerDisplaySignUp = (displaySignUp) => {
-        console.log("entered")
-        displaySignUp();
-    }
-    triggerCreateUser = (e) => {
-        console.log("hi")
-        console.log(e)
-    }
     render() {
         const {username,password, prompt} = this.state
         const { displaySignUp, addUser } = this.props
@@ -43,7 +35,7 @@ class SignUp extends Component {
                 </div>
                 {prompt&&<p className="prompt">{prompt}</p>}
                 <div className="button-pair">
-                    <button onClick={this.triggerCreateUser}>Create</button>
+                    <button >Create</button>
                     <button onClick={e => this.triggerDisplaySignUp(displaySignUp)}><p>Alreay have an Account</p></button>
                 </div>
             </form>
