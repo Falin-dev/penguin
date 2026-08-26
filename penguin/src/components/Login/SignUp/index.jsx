@@ -19,6 +19,9 @@ class SignUp extends Component {
         }
 
     }
+    triggerDisplaySignUp = (displaySignUp) => {
+        displaySignUp();
+    }
 
     render() {
         const {username,password, prompt} = this.state

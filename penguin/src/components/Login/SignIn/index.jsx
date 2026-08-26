@@ -33,10 +33,10 @@ class SignIn extends Component {
                 <h1>Login</h1>
                 <div className="form">
                     <label htmlFor="username">Username</label>
-                    <input onChange={this.handleFields} name="username" id="username" placeholder="falin-dev" />
+                    <input onChange={this.handleFields} name="username" id="username" value={username} placeholder="falin-dev" />
                     <br />
                     <label htmlFor="username">Password</label>
-                    <input onChange={this.handleFields} name="password" id="password" placeholder="falin#*&100" />
+                    <input onChange={this.handleFields} name="password" value={password} id="password" placeholder="falin#*&100" />
                 </div>
                 {prompt && <p className="prompt">{prompt}</p>}
                 <div className="button-pair">

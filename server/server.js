@@ -1,11 +1,12 @@
 const express = require("express");
+const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const cors = require("cors")
 const { randomUUID: uuid } = require("crypto");
 const { open } = require("sqlite")
 const sqlite3 = require("sqlite3")
 const dbName = "user.db";
-const path = require("path")
+const path = require("path");
 let db = null;
 const filePath = path.join(__dirname, dbName)
 const port = 3000;
@@ -38,8 +39,8 @@ app.get("/all-users/", async (req, res) => {
     const query = `
     select * from user_details limit 10;
     `;
-    const selection = await db.all(query);
-    res.send(selection)
+    const allUsers = await db.all(query);
+    res.json({allUsers:allUsers})
 })
 
 //Create User API http://localhost:3000/add-user/
@@ -52,7 +53,7 @@ app.post("/add-user/", async (req, res) => {
             throw new Error("EMPTY_USERNAME");
         }
         const hashedPassword = async (password) => {
-            if (password.length <= 8) {
+            if (password.length < 8) {
                 throw new Error("MINIMUM_LENGTH_ERROR");
             }
             else if (!/[!@#$%^&*()]/.test(password)) {
@@ -62,10 +63,10 @@ app.post("/add-user/", async (req, res) => {
         };
         const id = uuid()
         const query = `
-    insert into user_details (id,username,password) values(
-    '${id}','${username}','${await hashedPassword(password)}'
-    );
-    `
+        insert into user_details (id,username,password) values(
+        '${id}','${username}','${await hashedPassword(password)}'
+        );
+        `;
         const addUser = await db.run(query)
         response = "User Added Successfully"
     }
@@ -90,15 +91,17 @@ app.post("/add-user/", async (req, res) => {
 //Login User API http://localhost:3000/login/
 app.post("/login/", async (req, res) => {
     let response = null
-    console.log("Entered /login/")
+    let jwtToken = null
     const { username, password } = req.body;
+    console.log("username:",req.body)
     try {
 
         const isUserExist = `
         SELECT  username FROM user_details WHERE username = '${username}';
         `;
 
-        const runIsUserExist = Boolean(await db.get(isUserExist));
+        const runIsUserExist = await db.get(isUserExist);
+        console.log(runIsUserExist)
         if (!runIsUserExist) {
             throw new Error("USERNAME_NOT_AVAILABLE")
         }
@@ -106,10 +109,16 @@ app.post("/login/", async (req, res) => {
         SELECT password FROM user_details WHERE username = '${username}'`
         const originalPassword = await db.get(originalPasswordQuery);
         const samePassword = await bcrypt.compare(password, originalPassword.password)
-        if(samePassword){
+        //Everything Succeeds
+        if (samePassword) {
+            const payload = {username:username}
+            jwtToken = jwt.sign(payload,"MY_SECRET_TOKEN")
+
             response = "Login Successfull"
+
         }
-        else{
+        //Invalid password
+        else {
             throw new Error("INVALID_PASSWORD")
         }
     }
@@ -118,12 +127,17 @@ app.post("/login/", async (req, res) => {
         if (e.message === "USERNAME_NOT_AVAILABLE") {
             response = "Username does not exist"
         }
-        if(e.message === "INVALID_PASSWORD"){
+        if (e.message === "INVALID_PASSWORD") {
             response = "Password doesn't match"
         }
     }
-    return res.send({response:response})
+    return res.json({ response: response, jwtToken : jwtToken })
 })
+
+
+
+
+
 
 
 initializeDBServer();
