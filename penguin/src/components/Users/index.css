@@ -1,5 +1,21 @@
+.user-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 50px 10px 50px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 20px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .user-list{
     list-style: none;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+.error-message{
+    color: red;
 }

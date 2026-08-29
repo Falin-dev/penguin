@@ -2,6 +2,7 @@ import {Component} from "react"
 import "./index.css"
 class List extends Component{
     triggerDeleteUser = (deleteUser,id)=>{
+
         deleteUser(id)
     }
     render(){
@@ -10,7 +11,7 @@ class List extends Component{
         return(
             <li className="user-list">
                 <h3>{username}</h3>
-                <button onClick={e=>triggerDeleteUser(deleteUser,id)}>Delete</button>
+                <button onClick={e=>this.triggerDeleteUser(deleteUser,id)}>Delete</button>
             </li>
         )
     }

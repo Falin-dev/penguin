@@ -7,6 +7,7 @@ const { open } = require("sqlite")
 const sqlite3 = require("sqlite3")
 const dbName = "user.db";
 const path = require("path");
+const { stat } = require("fs");
 let db = null;
 const filePath = path.join(__dirname, dbName)
 const port = 3000;
@@ -35,13 +36,7 @@ const initializeDBServer = async () => {
     }
 }
 
-app.get("/all-users/", async (req, res) => {
-    const query = `
-    select * from user_details limit 10;
-    `;
-    const allUsers = await db.all(query);
-    res.json({allUsers:allUsers})
-})
+
 
 //Create User API http://localhost:3000/add-user/
 app.post("/add-user/", async (req, res) => {
@@ -84,6 +79,7 @@ app.post("/add-user/", async (req, res) => {
             response = "Password must contain special character"
         }
     }
+    res.status(200)
     res.json({ response: response })
 })
 
@@ -93,7 +89,7 @@ app.post("/login/", async (req, res) => {
     let response = null
     let jwtToken = null
     const { username, password } = req.body;
-    console.log("username:",req.body)
+    console.log("username:", req.body)
     try {
 
         const isUserExist = `
@@ -111,8 +107,8 @@ app.post("/login/", async (req, res) => {
         const samePassword = await bcrypt.compare(password, originalPassword.password)
         //Everything Succeeds
         if (samePassword) {
-            const payload = {username:username}
-            jwtToken = jwt.sign(payload,"MY_SECRET_TOKEN")
+            const payload = { username: username }
+            jwtToken = jwt.sign(payload, "MY_SECRET_TOKEN")
 
             response = "Login Successfull"
 
@@ -131,10 +127,71 @@ app.post("/login/", async (req, res) => {
             response = "Password doesn't match"
         }
     }
-    return res.json({ response: response, jwtToken : jwtToken })
+    return res.json({ response: response, jwtToken: jwtToken })
 })
 
+const authenticator = (req, res, next) => {
+    let jwtToken;
+    let status;
 
+    try {
+        const authHeader = req.headers["authorization"];
+        if (authHeader == undefined) {
+            status = 401
+            throw new Error("MISSING_AUTHORIZATION_TOKEN");
+        }
+        else {
+            jwtToken = authHeader.split(" ")[1];
+        }
+        if(jwtToken == undefined){
+            throw new Error("MISSING_JWT_TOKEN")
+        }
+        else{
+            jwt.verify(jwtToken,"MY_SECRET_TOKEN", (error,payload)=>{
+                if(error){
+                    res.status(401).json({response: "NON_BELONGING_JWT_TOKEN"})
+                }
+                else{
+                    status = 201
+                    next()
+                }
+            })
+        }
+    }
+    catch (e) {
+        return res.status(401).json({response: e.message})
+    }
+}
+
+
+//All Users Fetch http://localhost:3000/all-users/
+app.get("/all-users/",authenticator, async (req, res) => {
+    const query = `
+    select * from user_details limit 10;
+    `;
+    const allUsers = await db.all(query);
+    console.log(allUsers)
+    res.status(200).json({ data: allUsers })
+})
+
+//Delete User API http://localhost:3000/delete/2
+app.delete("/delete-user/:id", async (req, res) => {
+    const { id } = req.params
+    console.log("Entered")
+    try {
+        const query = `
+        DELETE FROM user_details WHERE id='${id}';
+        `
+        const deleteUser = await db.run(query)
+        res.status(200)
+        console.log("tried")
+        res.json({ response: "Deleted Successfully" })
+    }
+    catch (e) {
+        res.status(404)
+        res.json({ response: "USER_NOT_FOUND" })
+    }
+})
 
 
 

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import {Navigate} from "react-router-dom"
 import SignUp from "./SignUp/";
 import SignIn from "./SignIn/"
 import "./index.css"
@@ -11,7 +12,7 @@ const backendDetails = {
 
 }
 class Login extends Component {
-    state = { loginPage: true }
+    state = { loginPage: true, state:false }
     
     loginUser = async (username,password)=>{
         const loginUserDetails = JSON.stringify({
@@ -30,6 +31,12 @@ class Login extends Component {
         })
         const responseData = await loginUserRequest.json();
         const responseMessage = responseData.response;
+        if(responseMessage==="Login Successfull"){
+            this.props.toggleLogin(true)
+        }
+        else{
+            this.props.toggleLogin(false)
+        }
         return responseMessage;
     }
 
@@ -48,6 +55,12 @@ class Login extends Component {
         })
         const responseData = await addUserRequest.json();
         const responseMessage = responseData.response;
+        if(responseMessage==="Login Successfull"){
+            this.props.toggleLogin(true)
+        }
+        else{
+            this.props.toggleLogin(false)
+        }
         return responseMessage;
     }
 
@@ -63,7 +76,6 @@ class Login extends Component {
     }
     render() {
         const {loginPage} = this.state
-        console.log(loginPage)
         return (
             loginPage?<SignIn loginUser={this.loginUser} displaySignUp={this.displaySignUp}/>:<SignUp addUser={this.addUser} displaySignUp={this.displaySignUp}/>
         )

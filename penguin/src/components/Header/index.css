@@ -1,0 +1,22 @@
+.header{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background-color: rgba(255, 255, 255, 0.277);
+    color: white;
+    height: 50px;
+    align-items: center;
+    font-size: 25px;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+}
+.nav-link{
+    text-decoration: none;
+    color: white;
+}
+.nav-link:hover{
+    cursor: pointer;
+    color: black;
+}
