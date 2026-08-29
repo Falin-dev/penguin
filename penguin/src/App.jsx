@@ -4,17 +4,20 @@ import Header from "./components/Header/"
 import Login from "./components/Login/"
 import UsersList from "./components/Users"
 import Home from "./components/Home"
+import NotFound from "./components/NotFound/"
 import "./index.css"
+
+
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {isLoggedIn:false}
+    this.state = {isLoggedIn:false, jwtToken:""}
   }
-  toggleLogin=(status)=>{
-    this.setState(()=>({isLoggedIn:status}))
+  toggleLogin=(status, token)=>{
+    this.setState(()=>({isLoggedIn:status,jwtToken:"Bearer "+token}))
   }
   render() {
-    const {isLoggedIn} = this.state
+    const {isLoggedIn,jwtToken} = this.state
     return (
       <BrowserRouter>
         <Header />
@@ -22,8 +25,9 @@ class App extends Component {
         <p>Welcome to the Penguin App</p>
         <Routes>
           <Route exact path="/" Component={Home} />
-          <Route exact path="/login"  element={<Login toggleLogin={this.toggleLogin} />} />
-          <Route exact path="/users" element={<UsersList isLoggedIn={isLoggedIn} />}/>
+          <Route exact path="/login"  element={<Login  toggleLogin={this.toggleLogin} />} />
+          <Route exact path="/users" element={<UsersList jwtToken={jwtToken} isLoggedIn={isLoggedIn} />}/>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
     )

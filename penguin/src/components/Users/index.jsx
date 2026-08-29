@@ -2,8 +2,7 @@ import { Component } from "react"
 import { Navigate } from "react-router-dom"
 import Login from "../Login/"
 import List from "./list"
-const jwtToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbGluIiwiaWF0IjoxNzg3NzM2MTM0fQ.EOFn3EIB8bAjHGM1cNSr3l7QDrVOComXs4_SycTdW4Y"
-const usersList = async function () {
+const usersList = async function (jwtToken) {
     const listReq = await fetch("http://localhost:3000/all-users/", {
         method: "GET",
         headers: {
@@ -59,12 +58,13 @@ class UsersList extends Component {
 
     async componentDidMount() {
         try {
-            const users = await usersList();
+            console.log(this.props.jwtToken)
+            const users = await usersList(this.props.jwtToken);
             this.setState(() => ({ isLoading: false, users: users }))
         }
         catch (e) {
             console.log("Entered Catch:", e.message)
-            this.setState(() => ({ isLoading: false, error: e.message }))
+            this.setState(() => ({ isLoading: false, error: e.message==="MISSING_JWT_TOKEN" ? "Login or Create New Account" :e.message  }))
         }
     }
 }

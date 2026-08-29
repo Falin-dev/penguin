@@ -31,8 +31,9 @@ class Login extends Component {
         })
         const responseData = await loginUserRequest.json();
         const responseMessage = responseData.response;
+        const jwt = responseData.jwtToken
         if(responseMessage==="Login Successfull"){
-            this.props.toggleLogin(true)
+            this.props.toggleLogin(true,jwt)
         }
         else{
             this.props.toggleLogin(false)

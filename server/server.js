@@ -170,7 +170,6 @@ app.get("/all-users/",authenticator, async (req, res) => {
     select * from user_details limit 10;
     `;
     const allUsers = await db.all(query);
-    console.log(allUsers)
     res.status(200).json({ data: allUsers })
 })
 
