@@ -11,7 +11,13 @@ import "./index.css"
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {isLoggedIn:false, jwtToken:""}
+    const savedToken = localStorage.getItem("penguin_jwt");
+    if(savedToken !==null){
+      this.state = {isLoggedIn:true,jwtToken: "Bearer "+savedToken}
+    }
+    else{
+      this.state = {isLoggedIn:false, jwtToken:""}
+    }
   }
   toggleLogin=(status, token)=>{
     this.setState(()=>({isLoggedIn:status,jwtToken:"Bearer "+token}))

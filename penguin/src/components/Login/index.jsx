@@ -33,6 +33,7 @@ class Login extends Component {
         const responseMessage = responseData.response;
         const jwt = responseData.jwtToken
         if(responseMessage==="Login Successfull"){
+            localStorage.setItem("penguin_jwt",jwt)
             this.props.toggleLogin(true,jwt)
         }
         else{
