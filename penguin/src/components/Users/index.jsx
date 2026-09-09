@@ -116,7 +116,7 @@ const UsersList = ({ jwtToken }) => {
             });
             const responseDelete = await fetchDelete.json();
             if(fetchDelete.status===200){
-                setUsers((prev)=>[prev.filter(e=>e.id!==id)]);
+                setUsers((prev)=>prev.filter(e=>e.id!==id));
             }
             else{
                 throw new Error(responseDelete.response);
