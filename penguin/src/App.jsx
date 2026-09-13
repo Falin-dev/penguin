@@ -32,7 +32,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" Component={Home} />
           <Route exact path="/login"  element={<Login  toggleLogin={this.toggleLogin} />} />
-          <Route exact path="/users" element={<UsersList jwtToken={jwtToken} isLoggedIn={isLoggedIn} />}/>
+          
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>

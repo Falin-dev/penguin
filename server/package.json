@@ -9,13 +9,15 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "path": "^0.12.7",
+    "pg": "^8.23.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^6.0.1"
   },
@@ -23,6 +25,7 @@
     "nodemon": "^3.1.14"
   },
   "allowScripts": {
-    "sqlite3@6.0.1": true
+    "sqlite3@6.0.1": true,
+    "bcrypt@6.0.0": true
   }
 }
