@@ -1,8 +1,7 @@
-import  pool from "../../config/database.js";
-
+import { findAllUsers } from "./user.repository.js";
 const getAllUsers = async()=>{
-    const result = await pool.query("SELECT username,name from users");
-    return result
+    const users = await findAllUsers();
+    return users
 } 
 
 export {getAllUsers}

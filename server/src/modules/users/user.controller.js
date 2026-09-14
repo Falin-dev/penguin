@@ -1,8 +1,12 @@
 import {getAllUsers} from "./user.service.js"
 const getUsers = async (req , res)=>{
-
-    const result = await getAllUsers();
-    res.json(result.rows);
+    try{
+        const result = await getAllUsers();
+        res.json(result);
+    }
+    catch(error){
+        next(error);
+    }
 }
 
 export {getUsers}
