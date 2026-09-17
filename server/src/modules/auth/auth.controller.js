@@ -6,7 +6,7 @@ const addUser = async (req , res, next)=>{
 
         const result = await createUser(username,name,password,email,dob);
         res.status(201).json({
-            isUserAdded : "Added User Successfully",
+            message : "Added User Successfully",
         });
     }
     catch(error){

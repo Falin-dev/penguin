@@ -12,6 +12,6 @@ app.use(express.json());
 app.use("/health",healthRoutes);
 app.use("/user",usersRoutes);
 app.use("/auth",authenticationRoutes)
-app.use("/feed", feedRoutes)
+app.use("/post", feedRoutes)
 app.use(errorHandler);
 export default app;

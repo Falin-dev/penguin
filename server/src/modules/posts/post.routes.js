@@ -7,6 +7,6 @@ const router = Router()
 
 
 router.get("/",authenticateUser,fetchPosts);
-router.post("/post", authenticateUser, uploadPost);
+router.post("/", authenticateUser, uploadPost);
 
 export default router

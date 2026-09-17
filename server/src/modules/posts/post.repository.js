@@ -11,4 +11,17 @@ const getPosts = async () => {
     return result;
 }
 
-export { getPosts }
+
+const insertNewPost = async(postObject) =>{
+    const {username,title,content,image_url} = postObject
+    const query  = `
+    INSERT INTO posts (user_id,title,image_url,content) 
+    SELECT u.id,$1,$2,$3
+    FROM users u 
+    WHERE u.username = $4;
+    `
+    const result = await pool.query(query,[title,image_url,content,username])
+    return result;
+}
+
+export { getPosts, insertNewPost }

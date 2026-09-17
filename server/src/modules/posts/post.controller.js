@@ -1,5 +1,4 @@
-import {fetchFeedPosts} from "./post.service.js"
-
+import {fetchFeedPosts, uploadNewPost} from "./post.service.js"
 const fetchPosts = async (req,res,next)=>{
     try{
         const {username} = req.user
@@ -14,7 +13,18 @@ const fetchPosts = async (req,res,next)=>{
 const uploadPost = async(req,res,next)=>{
     try{
         const {username} = req.user
-        
+        const {title,image_url,content} = req.body;
+        const postObject = {
+            username,
+            title,
+            content,
+            image_url: image_url || null // Optional: explicitly convert undefined to null for clarity
+        };
+        const result = await uploadNewPost(postObject);
+        res.status(201).json({message:"Post created Successfully"})
+    }
+    catch(error){
+        next(error)
     }
 }
 
