@@ -1,43 +1,17 @@
-import { BrowserRouter,Routes, Route } from "react-router-dom"
-import { Component } from "react"
-import Header from "./components/Header/"
-import Login from "./components/Login/"
-import UsersList from "./components/Users"
-import Home from "./components/Home"
-import NotFound from "./components/NotFound/"
-import "./index.css"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./features/auth/pages/LoginPage";
+import RegisterPage from "./features/auth/pages/RegisterPage";
 
-
-class App extends Component {
-  constructor(props){
-    super(props);
-    const savedToken = localStorage.getItem("penguin_jwt");
-    if(savedToken !==null){
-      this.state = {isLoggedIn:true,jwtToken: "Bearer "+savedToken}
-    }
-    else{
-      this.state = {isLoggedIn:false, jwtToken:""}
-    }
-  }
-  toggleLogin=(status, token)=>{
-    this.setState(()=>({isLoggedIn:status,jwtToken:"Bearer "+token}))
-  }
-  render() {
-    const {isLoggedIn,jwtToken} = this.state
+function App() {
     return (
-      <BrowserRouter>
-        <Header />
-        <h1>PENGUIN</h1>
-        <p>Welcome to the Penguin App</p>
-        <Routes>
-          <Route exact path="/" Component={Home} />
-          <Route exact path="/login"  element={<Login  toggleLogin={this.toggleLogin} />} />
-          
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-      </BrowserRouter>
-    )
-  }
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<p>Hi</p>}/>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
