@@ -50,6 +50,9 @@ Frontend:
 
 - React
 - Vite
+- JavaScript
+- Folder: `client/`
+- Architecture: Feature-based structure (`features/`, `components/`, `services/`, `hooks/`, etc.)
 
 ---
 

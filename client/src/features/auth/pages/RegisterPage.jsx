@@ -23,6 +23,7 @@ const RegisterPage = () => {
             setEmail("");
             setName("");
             setDob("");
+            
         } catch (e) {
             setErrorMsg(e.message);
             setPrompt("");
