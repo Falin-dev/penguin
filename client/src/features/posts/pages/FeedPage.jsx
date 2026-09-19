@@ -2,7 +2,7 @@ import PostCard from "../components/PostCard.jsx"
 import { useState, useEffect } from "react"
 import Cookies from "js-cookie"
 import { GridLoader } from "react-spinners";
-
+import { getFeedPosts } from "../../../services/posts.service.js";
 
 const FeedPage = () => {
 
@@ -13,22 +13,8 @@ const FeedPage = () => {
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const fetchPosts = await fetch("http://localhost:3000/post/", {
-                    method: "GET",
-                    headers: {
-                        Authorization: "Bearer " + Cookies.get('ACCESS_TOKEN'),
-                        "Content-Type": "application/json"
-                    }
-                });
-                const result = await fetchPosts.json();
-                
-                if (fetchPosts.status === 200) {
-                    setPostList(() => result);
-                    
-                }
-                else {
-                    throw new Error(result.error || "Failed to fetch feed")
-                }
+                const data = await getFeedPosts();
+                setPostList(data);
             }
             catch (e) {
                 setErrorMsg(() => e.message)
