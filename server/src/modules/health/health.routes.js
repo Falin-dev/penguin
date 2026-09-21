@@ -13,6 +13,7 @@ router.get("/",async (req,res)=>{
         })
     }
     catch(e){
+        console.error("Database error in health check:", e);
         res.status(500).json({
             server:"OK",
             database:"error"
