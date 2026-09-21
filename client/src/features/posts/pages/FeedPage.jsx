@@ -27,11 +27,11 @@ const FeedPage = () => {
     }, [])
 
     return (
-        <div>
+        <div className="tui-page">
             <h1>Feed</h1>
             {isLoading&&<GridLoader color="#ffffffff" />}
-            {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
-            <ul>
+            {errorMsg && <p className="tui-error">{errorMsg}</p>}
+            <ul className="tui-feed">
                 {postList.map(e => <PostCard key={e.id} details={e} />)}
             </ul>
         </div>

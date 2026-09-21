@@ -31,9 +31,9 @@ const RegisterPage = () => {
     };
 
     return (
-        <div>
+        <div className="tui-page">
             <h1>Register User</h1>
-            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", width: "300px" }}>
+            <form className="tui-form" onSubmit={submit}>
                 <label htmlFor="username">Username</label>
                 <input onChange={e => setUsername(e.target.value)} name="username" value={username} required />
 
@@ -49,14 +49,14 @@ const RegisterPage = () => {
                 <label htmlFor="dob">Date of Birth</label>
                 <input type="date" onChange={e => setDob(e.target.value)} name="dob" value={dob} required />
 
-                <button type="submit" style={{ marginTop: "10px" }}>Register</button>
+                <button className="tui-button" type="submit">Register</button>
             </form>
 
-            {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
-            {prompt && <p style={{ color: "green" }}>{prompt}</p>}
+            {errorMsg && <p className="tui-error">{errorMsg}</p>}
+            {prompt && <p className="tui-success">{prompt}</p>}
 
-            <Link to="/login">
-                <button style={{ marginTop: "20px" }}>Existing User? Log In</button>
+            <Link className="tui-link" to="/login">
+                <button className="tui-button" type="button">Existing User? Log In</button>
             </Link>
         </div>
     )

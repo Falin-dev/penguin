@@ -1,114 +1,353 @@
+@font-face {
+  font-family: 'Monaspace Neon';
+  src: url('./assets/fonts/MonaspaceNeon-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --text: #e2e8f0;
+  --text-h: #f8fafc;
+  --bg: #080a0f; /* Deep charcoal / midnight */
+  --border: #1e293b;
+  --code-bg: #0f172a;
+  
+  /* TUI specific vars */
+  --tui-accent: #38bdf8;
+  --tui-accent-bg: rgba(56, 189, 248, 0.1);
+  --tui-border: #1e293b;
+  --tui-text-muted: #475569;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --mono: 'Monaspace Neon', ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: 14px/145% var(--mono);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
 }
 
 body {
   margin: 0;
+  background-color: var(--bg);
 }
 
 #root {
-  width: 1126px;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  margin: 0;
+  text-align: left;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  align-items: center;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
+h1, h2 {
+  font-family: var(--mono);
   font-weight: 500;
   color: var(--text-h);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
 }
 
-code,
-.counter {
+code {
   font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
+  font-size: 14px;
+  padding: 2px 6px;
+  background: var(--code-bg);
   color: var(--text-h);
+  border-radius: 2px;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* --- TUI GLOBAL STYLES --- */
+
+.tui-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: var(--mono);
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 48px 64px;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
-p{
-  margin-bottom: 20px;
+
+/* Pseudo-element for PENGUIN header and horizontal line */
+.tui-page::before {
+  content: "PENGUIN\A────────────────────────────────────────────────────────────";
+  white-space: pre;
+  display: block;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--tui-text-muted);
+  margin-bottom: 32px;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.tui-page h1 {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 32px 0;
+  color: var(--text-h);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.tui-page h1::before {
+  content: "> ";
+  color: var(--tui-accent);
+}
+
+.tui-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+}
+
+.tui-form label {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 16px;
+  margin-bottom: 4px;
+  text-transform: lowercase;
+  -webkit-font-smoothing: none;
+}
+
+.tui-form input {
+  font-family: var(--mono);
+  background-color: transparent;
+  color: var(--text-h);
+  border: none;
+  border-bottom: 1px solid var(--tui-border);
+  padding: 8px 0;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  border-radius: 0;
+  transition: border-bottom-color 0.2s, background-color 0.2s;
+  
+  /* Cursor hacks */
+  caret-color: var(--tui-accent);
+  caret-shape: block;
+}
+
+.tui-form input:focus {
+  border-bottom-color: var(--tui-accent);
+  background-color: var(--tui-accent-bg);
+}
+
+.tui-form input::placeholder {
+  color: var(--tui-border);
+}
+
+.tui-button {
+  font-family: var(--mono);
+  background-color: transparent;
+  color: var(--tui-accent);
+  border: 1px solid var(--tui-border);
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+  margin-top: 32px;
+  display: inline-block;
+  transition: all 0.1s;
+  -webkit-font-smoothing: none;
+}
+
+.tui-button::before {
+  content: "[ ";
+  color: var(--tui-text-muted);
+}
+
+.tui-button::after {
+  content: " ]";
+  color: var(--tui-text-muted);
+}
+
+.tui-button:hover, .tui-button:focus {
+  background-color: var(--tui-accent);
+  color: var(--bg);
+  border-color: var(--tui-accent);
+}
+
+.tui-button:hover::before, .tui-button:hover::after,
+.tui-button:focus::before, .tui-button:focus::after {
+  color: var(--bg);
+}
+
+.tui-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.tui-link .tui-button {
+  margin-top: 0;
+  border-color: transparent;
+  color: #94a3b8;
+}
+.tui-link .tui-button:hover, .tui-link .tui-button:focus {
+  background-color: transparent;
+  color: var(--tui-accent);
+  border-color: transparent;
+}
+.tui-link .tui-button:hover::before, .tui-link .tui-button:hover::after,
+.tui-link .tui-button:focus::before, .tui-link .tui-button:focus::after {
+  color: var(--tui-accent);
+}
+
+.tui-error {
+  font-family: var(--mono);
+  color: #f87171;
+  margin-top: 24px;
+  font-size: 13px;
+  -webkit-font-smoothing: none;
+}
+.tui-error::before {
+  content: "ERR: ";
+}
+
+.tui-success {
+  font-family: var(--mono);
+  color: #34d399;
+  margin-top: 24px;
+  font-size: 13px;
+  -webkit-font-smoothing: none;
+}
+.tui-success::before {
+  content: "OK: ";
+}
+
+.tui-page::after {
+  content: "────────────────────────────────────────────────────────────\A penguin // application";
+  white-space: pre;
+  display: block;
+  margin-top: auto;
+  padding-top: 48px;
+  color: var(--tui-text-muted);
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+  letter-spacing: 1px;
+}
+
+/* --- TUI NAVBAR --- */
+.tui-nav {
+  display: flex;
+  align-items: center;
+  font-family: var(--mono);
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--tui-border);
+  padding: 16px 64px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: none;
+  max-width: 800px;
+}
+.tui-nav::before {
+  content: "> ";
+  color: var(--tui-accent);
+  margin-right: 16px;
+  font-weight: bold;
+}
+.tui-nav a {
+  color: #94a3b8;
+  text-decoration: none;
+  margin-right: 24px;
+  font-size: 13px;
+  text-transform: uppercase;
+  transition: color 0.1s;
+}
+.tui-nav a:hover, .tui-nav a:focus, .tui-nav a.active {
+  color: var(--tui-accent);
+}
+.tui-nav a::before {
+  content: "[ ";
+  color: var(--tui-text-muted);
+  transition: color 0.1s;
+}
+.tui-nav a::after {
+  content: " ]";
+  color: var(--tui-text-muted);
+  transition: color 0.1s;
+}
+.tui-nav a:hover::before, .tui-nav a:hover::after,
+.tui-nav a:focus::before, .tui-nav a:focus::after,
+.tui-nav a.active::before, .tui-nav a.active::after {
+  color: var(--tui-accent);
+}
+
+/* --- TUI FEED & POSTS --- */
+.tui-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.tui-post-card {
+  font-family: var(--mono);
+  border: 1px solid var(--tui-border);
+  padding: 24px;
+  margin-bottom: 16px;
+  text-align: left;
+  background-color: #0c0f17;
+}
+.tui-post-card .tui-post-meta {
+  font-size: 12px;
+  color: var(--tui-text-muted);
+  margin-bottom: 16px;
+  -webkit-font-smoothing: none;
+  display: flex;
+  justify-content: space-between;
+}
+.tui-post-card .tui-post-author {
+  color: var(--tui-accent);
+}
+.tui-post-card .tui-post-author::before {
+  content: "@";
+}
+.tui-post-card h2 {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-h);
+  margin: 0 0 12px 0;
+  -webkit-font-smoothing: none;
+}
+.tui-post-card p {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.tui-post-card img {
+  max-width: 100%;
+  border: 1px solid var(--tui-border);
+  margin-bottom: 16px;
 }

@@ -43,21 +43,21 @@ const LoginUser = () => {
     console.log(errorMsg)
 
     return (
-        <div>
+        <div className="tui-page">
             <h1>Login User</h1>
-            <form onSubmit={submit}>
+            <form className="tui-form" onSubmit={submit}>
                 <label htmlFor="username">Username</label>
                 <input onChange={e => handleUsername(e)} name="username" value={username} />
                 <label htmlFor="password" >Password</label>
                 <input type="password" onChange={handlePassword} name="password" value={password} />
-                <button type="submit">Log In</button>
+                <button className="tui-button" type="submit">Log In</button>
             </form>
 
-            {errorMsg && <p>{errorMsg}</p>}
-            {prompt && <p>{prompt}</p>}
+            {errorMsg && <p className="tui-error">{errorMsg}</p>}
+            {prompt && <p className="tui-success">{prompt}</p>}
 
-            <Link to="/register">
-                <button type="button">New User?</button>
+            <Link className="tui-link" to="/register">
+                <button className="tui-button" type="button">New User?</button>
             </Link>
         </div>
     )

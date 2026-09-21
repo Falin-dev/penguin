@@ -1,10 +1,22 @@
-import {Link} from "react-router-dom"
-const Navbar = ()=>{
-    return(
-        <nav>
-            <Link to="/" >Penguin</Link>
-            <Link to="/login" >Login</Link>
-            <Link to="/register" >Register</Link>
+import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+import {useState} from "react"
+const Navbar = () => {
+    let isLoggedIn = false
+
+    if(Cookies.get("ACCESS_TOKEN")){
+        isLoggedIn = true
+    }
+
+    return (
+        <nav className="tui-nav">
+            <Link to="/feed" >Penguin</Link>
+            {!isLoggedIn?<div><Link to="/login" >Login</Link><Link to="/register" >Sign Up</Link></div>
+            :<Link onClick={()=>{
+                Cookies.remove("ACCESS_TOKEN");
+                window.location.reload();
+            }} to="/" >Log Out</Link>}
+            
         </nav>
     )
 }
