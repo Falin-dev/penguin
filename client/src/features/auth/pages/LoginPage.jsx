@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { login } from "../../../services/auth.service";
 import Cookies from 'js-cookie'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const LoginUser = () => {
-
+    const nav = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -32,6 +32,7 @@ const LoginUser = () => {
             setPrompt(() => "Login Success")
             setErrorMsg(() => "")
             Cookies.set('ACCESS_TOKEN', jwtToken, { expires: 1 })
+            nav("/feed")
         }
         catch (e) {
             setErrorMsg(() => e.message)
@@ -56,6 +57,7 @@ const LoginUser = () => {
             {errorMsg && <p className="tui-error">{errorMsg}</p>}
             {prompt && <p className="tui-success">{prompt}</p>}
 
+            
             <Link className="tui-link" to="/register">
                 <button className="tui-button" type="button">New User?</button>
             </Link>

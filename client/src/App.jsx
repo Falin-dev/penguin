@@ -9,7 +9,6 @@ function App() {
         <Navbar/>
             <Routes>
                 <Route exact path="/" element={<LoginPage />} />
-                
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />
                 <Route exact path="/feed" element={<FeedPage />}/>
