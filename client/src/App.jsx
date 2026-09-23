@@ -3,6 +3,7 @@ import LoginPage from "./features/auth/pages/LoginPage";
 import RegisterPage from "./features/auth/pages/RegisterPage";
 import FeedPage from "./features/posts/pages/FeedPage";
 import Navbar from "./components/Navbar";
+import UploadPost from "./features/posts/components/UploadPost";
 function App() {
     return (
         <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />
                 <Route exact path="/feed" element={<FeedPage />}/>
+                <Route exact path="/upload" element={<UploadPost />} />
             </Routes>
         </BrowserRouter>
     );
