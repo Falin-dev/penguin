@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { login } from "../../../services/auth.service";
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../../context/AuthContext";
 
 const LoginUser = () => {
     const nav = useNavigate();
+    const {setIsLoggedIn} = useContext(AuthContext)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -32,6 +34,7 @@ const LoginUser = () => {
             setPrompt(() => "Login Success")
             setErrorMsg(() => "")
             Cookies.set('ACCESS_TOKEN', jwtToken, { expires: 1 })
+            setIsLoggedIn(true)
             nav("/feed")
         }
         catch (e) {

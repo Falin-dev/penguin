@@ -13,7 +13,8 @@ const fetchPosts = async (req,res,next)=>{
 const uploadPost = async(req,res,next)=>{
     try{
         const {username} = req.user
-        const {title,image_url,content} = req.body;
+        const {title,content} = req.body;
+        
         const postObject = {
             username,
             title,

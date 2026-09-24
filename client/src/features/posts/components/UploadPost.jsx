@@ -13,14 +13,14 @@ const UploadPost = () => {
     }
 
     async function uploadPost(e) {
-        
+
+        e.preventDefault()
         try {
-            console.log("Hello")
-            const fetchUpload = await uploadPost("localhost:3000/post/", {
+            const fetchUpload = await fetch("http://localhost:3000/post/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: Cookies.get("ACCESS_TOKEN")
+                    Authorization: "Bearer "+Cookies.get("ACCESS_TOKEN")
                 },
                 body: JSON.stringify({
                     title: title,
@@ -30,10 +30,11 @@ const UploadPost = () => {
             const response = await fetchUpload.json();
             if (fetchUpload.status === 201) {
                 setMessage(response.message);
+                setTitle('');
+                setContent('');
                 return
             }
-            setTitle('');
-            setContent('');
+            
         }
         catch (e) {
             console.log("eRROR: ",e )
@@ -42,12 +43,12 @@ const UploadPost = () => {
     }
 
     return (
-        <form onSubmit={e=>uploadPost(e)}>
+        <form onSubmit={uploadPost}>
             <input onChange={(e) => handleTitle(e)} value={title} />
             <input onChange={(e) => handleContent(e)} value={content} />
             {/* <input onChange={()=>handleImage} value={imageUrl} /> */}
             <button type="submit">Upload Post</button>
-            
+            {message||err?<p>{message}</p>:<p>{err}</p>}
         </form>
     )
 }
