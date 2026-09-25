@@ -39,6 +39,7 @@ const UploadPost = () => {
                 setMessage(response.message);
                 setTitle('');
                 setContent('');
+                setImage(null);
                 return
             }
             
@@ -50,14 +51,24 @@ const UploadPost = () => {
     }
 
     return (
-        <form onSubmit={uploadPost}>
-            <input onChange={(e) => handleTitle(e)} value={title} />
-            <input onChange={(e) => handleContent(e)} value={content} />
-            <input onChange={e => handleImage(e)} type="file" />
-            {/* <input onChange={()=>handleImage} value={imageUrl} /> */}
-            <button type="submit">Upload Post</button>
-            {message||err?<p>{message}</p>:<p>{err}</p>}
-        </form>
+        <div className="tui-page">
+            <h1>Upload Post</h1>
+            <form className="tui-form" onSubmit={uploadPost}>
+                <label htmlFor="title">Title</label>
+                <input name="title" onChange={(e) => handleTitle(e)} value={title} placeholder="Enter post title..." />
+                
+                <label htmlFor="content">Content</label>
+                <textarea name="content" onChange={(e) => handleContent(e)} value={content} placeholder="What's on your mind?" />
+                
+                <label htmlFor="image">Attach Image (Optional)</label>
+                <input name="image" onChange={e => handleImage(e)} type="file" />
+                
+                <button className="tui-button" type="submit">Upload Post</button>
+                
+                {message && <p className="tui-success">{message}</p>}
+                {err && <p className="tui-error">{err}</p>}
+            </form>
+        </div>
     )
 }
 

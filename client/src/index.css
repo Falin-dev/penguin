@@ -137,7 +137,8 @@ code {
   -webkit-font-smoothing: none;
 }
 
-.tui-form input {
+.tui-form input,
+.tui-form textarea {
   font-family: var(--mono);
   background-color: transparent;
   color: var(--text-h);
@@ -155,12 +156,27 @@ code {
   caret-shape: block;
 }
 
-.tui-form input:focus {
+.tui-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  border: 1px solid var(--tui-border);
+  padding: 12px;
+  margin-top: 8px;
+  background-color: rgba(15, 23, 42, 0.5); /* subtle background for text area */
+}
+
+.tui-form input:focus,
+.tui-form textarea:focus {
   border-bottom-color: var(--tui-accent);
   background-color: var(--tui-accent-bg);
 }
 
-.tui-form input::placeholder {
+.tui-form textarea:focus {
+  border-color: var(--tui-accent);
+}
+
+.tui-form input::placeholder,
+.tui-form textarea::placeholder {
   color: var(--tui-border);
 }
 
