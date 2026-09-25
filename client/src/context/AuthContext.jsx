@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
         if (Cookies.get("ACCESS_TOKEN")) {
             setIsLoggedIn(true)
         }
+
     },[])
 
     return(

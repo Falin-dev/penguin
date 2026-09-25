@@ -14,12 +14,12 @@ const uploadPost = async(req,res,next)=>{
     try{
         const {username} = req.user
         const {title,content} = req.body;
-        
+        const imageFile = req.file;
         const postObject = {
             username,
             title,
             content,
-            image_url: image_url || null // Optional: explicitly convert undefined to null for clarity
+            imageFile : imageFile || null // Optional: explicitly convert undefined to null for clarity
         };
         const result = await uploadNewPost(postObject);
         res.status(201).json({message:"Post created Successfully"})
