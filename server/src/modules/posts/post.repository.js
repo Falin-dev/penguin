@@ -20,6 +20,7 @@ const insertNewPost = async(postObject) =>{
     FROM users u 
     WHERE u.username = $4;
     `;
+    
     const result = await pool.query(query,[title,image_url,content,username])
     return result;
 }
