@@ -25,4 +25,16 @@ const insertNewPost = async(postObject) =>{
     return result;
 }
 
-export { getPosts, insertNewPost }
+const insertLike = async(postId,username)=>{
+    const query = `
+    INSERT INTO post_likes (post_id,liked_by)
+    SELECT $1,u.id
+    from users u
+    WHERE u.username = $2 
+    `
+    const result = await pool.query(query,[postId,username])
+    return result
+}
+
+
+export { getPosts, insertNewPost, insertLike }
