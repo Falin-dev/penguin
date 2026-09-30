@@ -26,6 +26,7 @@ const insertNewPost = async(postObject) =>{
 }
 
 
+
 const insertLike = async(postId,username)=>{
     const query = `
     INSERT INTO post_likes (post_id,liked_by)
