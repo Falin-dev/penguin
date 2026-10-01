@@ -2,9 +2,16 @@ import pool from "../../config/database.js";
 
 const getPosts = async () => {
     const query = `
-    SELECT  u.name,p.id,p.title,p.image_url,p.content,p.posted_at
+    SELECT  u.name,p.id,p.title,p.image_url,p.content,p.posted_at, COUNT(l.post_id)
     FROM posts p
     INNER JOIN users u ON p.user_id = u.id
+    INNER JOIN post_likes l ON p.id = l.post_id
+    group by u.name, 
+    p.id, 
+    p.title, 
+    p.image_url, 
+    p.content, 
+    p.posted_at
     order by posted_at desc limit 10;
     `
     const result = await pool.query(query);
@@ -37,6 +44,5 @@ const insertLike = async(postId,username)=>{
     const result = await pool.query(query,[postId,username])
     return result
 }
-
 
 export { getPosts, insertNewPost, insertLike }
