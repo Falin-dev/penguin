@@ -31,6 +31,7 @@ const FeedPage = () => {
         getPosts();
     }, [isLoggedIn,nav])
 
+    
     return (
         <div className="tui-page">
             <h1>Feed</h1>

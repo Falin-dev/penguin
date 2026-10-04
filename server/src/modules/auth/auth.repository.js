@@ -12,8 +12,6 @@ const addUser = async (username, name, password_hash, email, dob) => {
 
 }
 
-
-
 const checkUserExistsence = async (username) => {
     const query = `
     SELECT username,password_hash FROM users where username = $1
@@ -21,5 +19,7 @@ const checkUserExistsence = async (username) => {
     const result = await pool.query(query, [username]);
     return result.rows[0];
 }
+
+
 
 export { addUser, checkUserExistsence }

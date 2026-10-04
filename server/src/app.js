@@ -14,4 +14,4 @@ app.use("/user",usersRoutes);
 app.use("/auth",authenticationRoutes)
 app.use("/post", feedRoutes)
 app.use(errorHandler);
-export default app;
+export default app
