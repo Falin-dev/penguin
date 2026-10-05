@@ -1,4 +1,4 @@
-import { getPosts, insertNewPost, insertLike } from "./post.repository.js"
+import { getPosts, insertNewPost, insertLike, deleteLike } from "./post.repository.js"
 import { createClient } from "@supabase/supabase-js";
 import { SUPABASE_URL, SUPABASE_KEY } from "../../config/env.js";
 const fetchFeedPosts = async (username) => {
@@ -31,9 +31,10 @@ const likePost = async(postId,username)=>{
     const result = await insertLike(postId,username)
     return result
 }
-const removeLike = async(postId, username){
-    
+const removeLike = async(postId, username)=>{
+    const result = await deleteLike(postId,username)
+    return result
 }
 
 
-export { fetchFeedPosts, uploadNewPost, likePost }
+export { fetchFeedPosts, uploadNewPost, likePost, removeLike }

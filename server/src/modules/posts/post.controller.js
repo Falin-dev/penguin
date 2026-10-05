@@ -41,16 +41,16 @@ const postLike = async(req,res,next)=>{
     }
 }
 
-const deletePostLike = async(req,res,next){
+const deletePostLike = async(req,res,next)=>{
     try{
         const {postId} = req.params
         const {username} = req.user
         const result = await removeLike(postId,username)
-        res.status(204).json({message:"Post Unliked"})
+        res.status(200).json({message:"Post Unliked"})
     }
     catch(error){
         next(error)
     }
 }
 
-export {fetchPosts,uploadPost, postLike}
+export {fetchPosts,uploadPost, postLike, deletePostLike}

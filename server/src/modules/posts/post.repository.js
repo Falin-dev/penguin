@@ -19,30 +19,42 @@ const getPosts = async () => {
 }
 
 
-const insertNewPost = async(postObject) =>{
-    const {username,title,content,image_url} = postObject
-    const query  = `
+const insertNewPost = async (postObject) => {
+    const { username, title, content, image_url } = postObject
+    const query = `
     INSERT INTO posts (user_id,title,image_url,content) 
     SELECT u.id,$1,$2,$3
     FROM users u 
     WHERE u.username = $4;
     `;
-    
-    const result = await pool.query(query,[title,image_url,content,username])
+
+    const result = await pool.query(query, [title, image_url, content, username])
     return result;
 }
 
 
 
-const insertLike = async(postId,username)=>{
+const insertLike = async (postId, username) => {
     const query = `
     INSERT INTO post_likes (post_id,liked_by)
     SELECT $1,u.id
     from users u
     WHERE u.username = $2 
     `
+    const result = await pool.query(query, [postId, username])
+    return result
+}
+
+const deleteLike = async (postId, username) => {
+    const query = `
+    DELETE from post_likes 
+    WHERE post_id = $1 AND liked_by = (
+    SELECT id from users 
+    WHERE username = $2
+    );
+    `
     const result = await pool.query(query,[postId,username])
     return result
 }
 
-export { getPosts, insertNewPost, insertLike }
+export { getPosts, insertNewPost, insertLike, deleteLike }
