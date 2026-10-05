@@ -196,25 +196,10 @@ code {
   -webkit-font-smoothing: none;
 }
 
-.tui-button::before {
-  content: "[ ";
-  color: var(--tui-text-muted);
-}
-
-.tui-button::after {
-  content: " ]";
-  color: var(--tui-text-muted);
-}
-
 .tui-button:hover, .tui-button:focus {
   background-color: var(--tui-accent);
   color: var(--bg);
   border-color: var(--tui-accent);
-}
-
-.tui-button:hover::before, .tui-button:hover::after,
-.tui-button:focus::before, .tui-button:focus::after {
-  color: var(--bg);
 }
 
 .tui-link {
@@ -303,21 +288,6 @@ code {
 .tui-nav a:hover, .tui-nav a:focus, .tui-nav a.active {
   color: var(--tui-accent);
 }
-.tui-nav a::before {
-  content: "[ ";
-  color: var(--tui-text-muted);
-  transition: color 0.1s;
-}
-.tui-nav a::after {
-  content: " ]";
-  color: var(--tui-text-muted);
-  transition: color 0.1s;
-}
-.tui-nav a:hover::before, .tui-nav a:hover::after,
-.tui-nav a:focus::before, .tui-nav a:focus::after,
-.tui-nav a.active::before, .tui-nav a.active::after {
-  color: var(--tui-accent);
-}
 
 /* --- TUI FEED & POSTS --- */
 .tui-feed {
@@ -366,4 +336,43 @@ code {
   max-width: 100%;
   border: 1px solid var(--tui-border);
   margin-bottom: 16px;
+}
+
+/* --- TUI LIKE BUTTON --- */
+.tui-post-actions {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.tui-like-button {
+  font-family: var(--mono);
+  background-color: transparent;
+  color: var(--text-h); /* Outline white */
+  border: 1px solid var(--text-h);
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.1s;
+  -webkit-font-smoothing: none;
+}
+
+.tui-like-button:hover, .tui-like-button:focus {
+  border-color: var(--tui-accent);
+  color: var(--tui-accent);
+}
+
+.tui-like-button.liked {
+  background-color: #1e3a8a; /* Midnight blue */
+  border-color: #1e3a8a;
+  color: var(--text-h);
+}
+
+.tui-like-button.liked:hover {
+  background-color: #172554; /* Darker midnight blue on hover */
+  border-color: #172554;
 }

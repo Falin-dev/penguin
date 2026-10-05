@@ -2,7 +2,7 @@ import { getPosts, insertNewPost, insertLike, deleteLike } from "./post.reposito
 import { createClient } from "@supabase/supabase-js";
 import { SUPABASE_URL, SUPABASE_KEY } from "../../config/env.js";
 const fetchFeedPosts = async (username) => {
-    const result = await getPosts();
+    const result = await getPosts(username);
     return result.rows;
 }
 const supabase = createClient(

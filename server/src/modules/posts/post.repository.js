@@ -1,8 +1,13 @@
 import pool from "../../config/database.js";
 
-const getPosts = async () => {
+const getPosts = async (username) => {
     const query = `
-    SELECT  u.name,p.id,p.title,p.image_url,p.content,p.posted_at, COUNT(l.post_id) as likes
+    SELECT  u.name,p.id,p.title,p.image_url,p.content,p.posted_at, COUNT(l.post_id) as likes, EXISTS(
+        SELECT 1
+        FROM post_likes pl
+        WHERE pl.post_id = p.id
+        AND pl.liked_by = (SELECT id FROM users WHERE username=$1)
+    ) AS is_liked_by_user
     FROM posts p
     INNER JOIN users u ON p.user_id = u.id
     LEFT JOIN post_likes l ON p.id = l.post_id
@@ -14,7 +19,7 @@ const getPosts = async () => {
     p.posted_at
     order by posted_at desc;
     `
-    const result = await pool.query(query);
+    const result = await pool.query(query,[username]);
     return result;
 }
 

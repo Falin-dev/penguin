@@ -507,13 +507,7 @@ Prefer:
 - Subtle hover transition
 - Restrained accent color
 
-Buttons may use terminal-inspired bracket styling when appropriate:
-
-    [ LOG IN ]
-
-    [ NEW USER ]
-
-But this should be used selectively.
+Do not use `[ ]` brackets around buttons or text to make them look retro or TUI-styled. This looks dated and cluttered.
 
 Do not turn every button into ASCII art.
 
