@@ -1,4 +1,4 @@
-import {fetchFeedPosts, uploadNewPost, likePost} from "./post.service.js"
+import {fetchFeedPosts, uploadNewPost, likePost, removeLike} from "./post.service.js"
 const fetchPosts = async (req,res,next)=>{
     try{
         const {username} = req.user
@@ -35,6 +35,18 @@ const postLike = async(req,res,next)=>{
         const {username} = req.user
         const result = await likePost(postId,username)
         res.status(201).json({message:"Post Liked"})
+    }
+    catch(error){
+        next(error)
+    }
+}
+
+const deletePostLike = async(req,res,next){
+    try{
+        const {postId} = req.params
+        const {username} = req.user
+        const result = await removeLike(postId,username)
+        res.status(204).json({message:"Post Unliked"})
     }
     catch(error){
         next(error)

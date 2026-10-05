@@ -31,7 +31,9 @@ const likePost = async(postId,username)=>{
     const result = await insertLike(postId,username)
     return result
 }
-
+const removeLike = async(postId, username){
+    
+}
 
 
 export { fetchFeedPosts, uploadNewPost, likePost }
