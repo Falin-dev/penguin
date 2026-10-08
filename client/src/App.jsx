@@ -20,6 +20,7 @@ function App() {
                     <Route exact path="/feed" element={<FeedPage />} />
                     <Route exact path="/upload" element={<UploadPost />} />
                     <Route path="*" element={<NotFound/>} />
+                    
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
