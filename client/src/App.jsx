@@ -21,6 +21,7 @@ function App() {
                     <Route exact path="/upload" element={<UploadPost />} />
                     <Route path="*" element={<NotFound/>} />
                     
+                    
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
