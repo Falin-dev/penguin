@@ -15,14 +15,14 @@ function App() {
             <AuthProvider>
                 <Navbar />
                 <Routes>
-                    
-                    <Route exact path="/login" element={<LoginPage />} />
-                    <Route exact path="/register" element={<RegisterPage />} />
                     <Route exact path="/feed" element={
                         <ProtectedRoute>
                             <FeedPage />
                         </ProtectedRoute>
                     } />
+                    <Route exact path="/login" element={<LoginPage />} />
+                    <Route exact path="/register" element={<RegisterPage />} />
+                    
                     <Route exact path="/upload" element={
                         <ProtectedRoute>
                             <UploadPost />

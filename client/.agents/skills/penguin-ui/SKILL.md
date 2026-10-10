@@ -298,24 +298,35 @@ The layout should feel like a deliberate interface.
 
 Typography is a major part of Penguin's identity.
 
-The primary font is:
+The primary font for body text and code is:
 
     Monaspace Neon
 
-Use the configured Penguin font through the project's font variable.
+The secondary font specifically for the BRAND LOGO and MAJOR HEADINGS is:
+
+    Midnight Letters
+
+The tertiary UI font for INTERACTIVE ELEMENTS AND POST TITLES is:
+
+    FFF Forward
+
+Use these configured Penguin fonts through the project's font variables.
 
 The visual typography should have a retro developer-tool character.
 
-Use the stronger retro character for:
+Use Midnight Letters significantly but sparingly (e.g., major headings, logos, large titles) to avoid bloating the design.
 
-- Logo
-- Navigation
-- Headings
+Use FFF Forward for:
+- Navbar Links
 - Buttons
-- Short labels
-- Metadata
+- Post Titles
+- Profile Labels
+
+Use Monaspace Neon for:
+- Body Text
+- Code Snippets
 - Technical/status text
-- Small UI elements
+- Metadata
 
 Long-form content must remain readable.
 

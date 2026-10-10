@@ -6,6 +6,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Midnight Letters';
+  src: url('./assets/fonts/MidnightLetters-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FFF Forward';
+  src: url('./assets/fonts/FFFFORWA.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --text: #e2e8f0;
   --text-h: #f8fafc;
@@ -20,8 +36,9 @@
   --tui-text-muted: #475569;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Midnight Letters', system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: 'Monaspace Neon', ui-monospace, Consolas, monospace;
+  --font-fff: 'FFF Forward', monospace;
 
   font: 14px/145% var(--mono);
   letter-spacing: 0.18px;
@@ -51,8 +68,8 @@ body {
   align-items: center;
 }
 
-h1, h2 {
-  font-family: var(--mono);
+h1, h2, h3 {
+  font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
 }
@@ -90,7 +107,7 @@ code {
 
 /* Pseudo-element for PENGUIN header and horizontal line */
 .tui-page::before {
-  content: "PENGUIN\A────────────────────────────────────────────────────────────";
+
   white-space: pre;
   display: block;
   font-family: var(--mono);
@@ -246,7 +263,7 @@ code {
 }
 
 .tui-page::after {
-  content: "────────────────────────────────────────────────────────────\A penguin // application";
+
   white-space: pre;
   display: block;
   margin-top: auto;
@@ -260,8 +277,12 @@ code {
 
 /* --- TUI NAVBAR --- */
 .tui-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-family: var(--mono);
   background-color: var(--bg);
   border-bottom: 1px solid var(--tui-border);
@@ -277,7 +298,8 @@ code {
   margin-right: 16px;
   font-weight: bold;
 }
-.tui-nav a {
+.tui-nav a, .tui-nav button {
+  font-family: var(--font-fff);
   color: #94a3b8;
   text-decoration: none;
   margin-right: 24px;
@@ -287,6 +309,76 @@ code {
 }
 .tui-nav a:hover, .tui-nav a:focus, .tui-nav a.active {
   color: var(--tui-accent);
+}
+
+.tui-nav a.tui-nav-logo {
+  font-family: var(--heading) !important;
+  font-size: 24px !important;
+  color: var(--text-h) !important;
+  text-transform: none !important;
+}
+
+/* --- TUI DROPDOWN --- */
+.tui-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  width: 200px;
+  background-color: var(--bg);
+  border: 1px solid var(--tui-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.tui-dropdown-header {
+  padding: 12px 16px;
+}
+
+.tui-dropdown-name {
+  color: var(--text-h);
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+}
+
+.tui-dropdown-username {
+  color: var(--tui-text-muted);
+  font-size: 12px;
+  margin: 4px 0 0 0;
+}
+
+.tui-dropdown-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--tui-border);
+}
+
+.tui-dropdown-item {
+  padding: 12px 16px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.tui-dropdown-item:hover:not(.disabled) {
+  background-color: var(--tui-accent-bg);
+  color: var(--tui-accent);
+}
+
+.tui-dropdown-item.disabled {
+  color: var(--tui-text-muted);
+  cursor: not-allowed;
+}
+
+/* Fix for .tui-nav Links inside dropdown */
+.tui-nav .tui-dropdown a {
+  margin-right: 0;
+  display: block;
+  text-transform: none;
 }
 
 /* --- TUI FEED & POSTS --- */
@@ -319,7 +411,7 @@ code {
   content: "@";
 }
 .tui-post-card h2 {
-  font-family: var(--mono);
+  font-family: var(--font-fff);
   font-size: 16px;
   font-weight: bold;
   color: var(--text-h);

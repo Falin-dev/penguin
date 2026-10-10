@@ -3,7 +3,8 @@ const fetchPosts = async (req,res,next)=>{
     try{
         const {username} = req.user
         const result = await fetchFeedPosts(username)
-        res.json(result)
+        res.status(200).json(result)
+        
     }
     catch(error){
         next(error)
