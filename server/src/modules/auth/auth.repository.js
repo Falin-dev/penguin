@@ -14,7 +14,7 @@ const addUser = async (username, name, password_hash, email, dob) => {
 
 const checkUserExistsence = async (username) => {
     const query = `
-    SELECT username,password_hash FROM users where username = $1
+    SELECT username,password_hash,name,profile_picture_url FROM users where username = $1
     `
     const result = await pool.query(query, [username]);
     console.log("Got")

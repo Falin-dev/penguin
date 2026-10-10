@@ -30,7 +30,12 @@ const validateUser = async (username, password) => {
     }
     result = {
         message: "Login Success",
-        jwtToken: await issueJWT({ username }, JWT_SECRET)
+        jwtToken: await issueJWT({ username }, JWT_SECRET),
+        user : {
+            username : userDetails.username,
+            name : userDetails.name,
+            profilePicture : userDetails.profile_picture_url
+        }
     }
     return result;
 }

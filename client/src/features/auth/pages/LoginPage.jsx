@@ -6,7 +6,8 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const LoginUser = () => {
     const nav = useNavigate();
-    const {setIsLoggedIn} = useContext(AuthContext)
+
+    const {setIsLoggedIn, setUser} = useContext(AuthContext)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -35,6 +36,8 @@ const LoginUser = () => {
             setErrorMsg(() => "")
             Cookies.set('ACCESS_TOKEN', jwtToken, { expires: 1 })
             setIsLoggedIn(true)
+            setUser(result.user)
+            localStorage.setItem("USER_DATA", JSON.stringify(result.user))
             nav("/feed")
         }
         catch (e) {
