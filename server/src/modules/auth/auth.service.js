@@ -10,6 +10,7 @@ const createUser = async (username, name, password, email, dob) => {
 }
 
 const validateUser = async (username, password) => {
+    
     let result = {};
     function issueJWT(payload, JWT_SECRET) {
         const token = jwt.sign(payload, JWT_SECRET);

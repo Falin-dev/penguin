@@ -12,10 +12,6 @@ const FeedPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const nav = useNavigate();
     useEffect(() => {
-        if(!isLoggedIn){
-            nav("/login")
-            return
-        }
         const getPosts = async () => {
             try {
                 const data = await getFeedPosts();

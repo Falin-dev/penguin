@@ -17,6 +17,7 @@ const addUser = async (req , res, next)=>{
 
 const loginUser = async(req,res,next)=>{
     try{
+
         const {username,password} = req.body;
         const result = await validateUser(username,password);
         res.status(200).json(result);

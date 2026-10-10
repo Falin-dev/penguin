@@ -17,6 +17,7 @@ const checkUserExistsence = async (username) => {
     SELECT username,password_hash FROM users where username = $1
     `
     const result = await pool.query(query, [username]);
+    console.log("Got")
     return result.rows[0];
 }
 
