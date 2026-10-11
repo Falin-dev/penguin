@@ -44,8 +44,8 @@ function ProfileDropDown() {
                             className="tui-dropdown-avatar" 
                         />
                         <div className="tui-dropdown-info">
-                            <p className="tui-dropdown-name">{user?.name || "User"}</p>
-                            <p className="tui-dropdown-username">@{user?.username || "user"}</p>
+                            <p className="tui-dropdown-name ">{user?.name || "User"}</p>
+                            <p className="tui-post-author">@{user?.username || "user"}</p>
                         </div>
                     </div>
 
