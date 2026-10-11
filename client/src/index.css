@@ -318,13 +318,24 @@ code {
   text-transform: none !important;
 }
 
+.tui-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tui-nav-actions a,
+.tui-nav-actions button {
+  margin-right: 0;
+}
+
 /* --- TUI DROPDOWN --- */
 .tui-dropdown {
   position: absolute;
   right: 0;
   top: 100%;
   margin-top: 8px;
-  width: 200px;
+  width: 220px;
   background-color: var(--bg);
   border: 1px solid var(--tui-border);
   display: flex;
@@ -332,21 +343,81 @@ code {
   z-index: 100;
 }
 
+/* Avatar button trigger in navbar */
+.tui-avatar-btn {
+  background: transparent;
+  border: 1px solid var(--tui-border);
+  border-radius: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+  margin-top: 0;
+}
+
+.tui-nav button.tui-avatar-btn {
+  margin-right: 0;
+}
+
+.tui-avatar-btn:hover,
+.tui-avatar-btn:focus {
+  border-color: var(--tui-accent);
+}
+
+.tui-avatar-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
 .tui-dropdown-header {
   padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tui-dropdown-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  border: 1px solid var(--tui-border);
+  object-fit: cover;
+  background-color: var(--code-bg);
+  flex-shrink: 0;
+}
+
+.tui-dropdown-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .tui-dropdown-name {
   color: var(--text-h);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tui-dropdown-username {
   color: var(--tui-text-muted);
-  font-size: 12px;
-  margin: 4px 0 0 0;
+  font-size: 11px;
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tui-dropdown-divider {

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate, BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
 import RegisterPage from "./features/auth/pages/RegisterPage";
 import FeedPage from "./features/posts/pages/FeedPage";
@@ -15,14 +15,14 @@ function App() {
             <AuthProvider>
                 <Navbar />
                 <Routes>
+                    <Route exact path="/" element={<Navigate to="/feed" replace />} />
                     <Route exact path="/feed" element={
                         <ProtectedRoute>
                             <FeedPage />
                         </ProtectedRoute>
                     } />
-                    <Route exact path="/login" element={<LoginPage />} />
                     <Route exact path="/register" element={<RegisterPage />} />
-                    
+                    <Route exact path="/login" element={<LoginPage />} />
                     <Route exact path="/upload" element={
                         <ProtectedRoute>
                             <UploadPost />
