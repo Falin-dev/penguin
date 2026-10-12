@@ -51,7 +51,7 @@ function ProfileDropDown() {
 
                     <div className="tui-dropdown-divider"></div>
 
-                    <span className="tui-dropdown-item disabled">
+                    <span  className="tui-dropdown-item">
                         Settings
                     </span>
 

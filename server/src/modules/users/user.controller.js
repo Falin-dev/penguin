@@ -10,4 +10,14 @@ const getUsers = async (req , res ,next)=>{
     }
 }
 
+const updateProfile = async(req,res,next)=>{
+    try{
+        const username = req.user
+        const profilePictureUrl 
+    }
+    catch(error){
+        next(error)
+    }
+}
+
 export {getUsers}
