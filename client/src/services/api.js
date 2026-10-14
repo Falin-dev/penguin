@@ -25,4 +25,8 @@ export const api = {
         method: "POST", body: body ? JSON.stringify(body) : undefined
     }),
     delete : (endpoint) => fetchWithConfig(endpoint,{method:"DELETE"}),
+    patch : (endpoint, body) => fetchWithConfig(endpoint,{
+        method:"PATCH",
+        body: body ? JSON.stringify(body) : undefined
+    }),
 };

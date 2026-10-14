@@ -38,10 +38,10 @@ function ProfileDropDown() {
             {isProfileOpen && (
                 <div className="tui-dropdown shadow-lg">
                     <div className="tui-dropdown-header">
-                        <img 
-                            src={user?.profilePicture} 
-                            alt="Avatar" 
-                            className="tui-dropdown-avatar" 
+                        <img
+                            src={user?.profilePicture}
+                            alt="Avatar"
+                            className="tui-dropdown-avatar"
                         />
                         <div className="tui-dropdown-info">
                             <p className="tui-dropdown-name ">{user?.name || "User"}</p>
@@ -51,9 +51,13 @@ function ProfileDropDown() {
 
                     <div className="tui-dropdown-divider"></div>
 
-                    <span  className="tui-dropdown-item">
+                    <Link
+                        to="/settings"
+                        className="tui-dropdown-item"
+                        onClick={() => setIsProfileOpen(false)}
+                    >
                         Settings
-                    </span>
+                    </Link>
 
                     <Link
                         className="tui-dropdown-item"

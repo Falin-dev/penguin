@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import UploadPost from "./features/posts/components/UploadPost";
 import NotFound from "./NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import SettingsPage from "./features/users/pages/SettingsPage";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -28,6 +28,12 @@ function App() {
                             <UploadPost />
                         </ProtectedRoute>
                     } />
+                    <Route exact path="/settings" element={
+                        <ProtectedRoute>
+                            <SettingsPage/>
+                        </ProtectedRoute>
+                    }/>
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </AuthProvider>

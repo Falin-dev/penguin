@@ -1,5 +1,5 @@
 import pool from "../../config/database.js";
-import { updateProfile } from "./user.controller.js";
+
 
 export const findAllUsers = async () => {
     const result = await pool.query(
@@ -14,7 +14,7 @@ export const updateProfile = async (profileObject)=>{
     const clauses = []
     const values = []
     let paramIndex = 1
-    if (newName !== undefined && newName !== null) {
+    if (newName && newName.trim() !== "") {
         clauses.push(`name = $${paramIndex}`)
         values.push(newName)
         paramIndex++
@@ -31,8 +31,10 @@ export const updateProfile = async (profileObject)=>{
     const query = `
     UPDATE users
     SET ${clauses.join(',')}
-    WHERE username = ${paramIndex}
+    WHERE username = $${paramIndex}
+
+    RETURNING username, name, profile_picture_url
     `;
     const result = await pool.query(query,values)
-    return result
+    return result.rows[0]
 }

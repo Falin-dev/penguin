@@ -9,5 +9,5 @@ const upload = multer({
 
 
 router.get("/all", authenticateUser, getUsers )
-router.patch("/profile",authenticateUser, upload.single("profileImage") , updateProfile)
+router.patch("/profile",authenticateUser, upload.single("profilePicture") , updateProfile)
 export default router
