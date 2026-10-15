@@ -25,10 +25,11 @@
 :root {
   --text: #e2e8f0;
   --text-h: #f8fafc;
-  --bg: #080a0f; /* Deep charcoal / midnight */
+  --bg: #080a0f;
+  /* Deep charcoal / midnight */
   --border: #1e293b;
   --code-bg: #0f172a;
-  
+
   /* TUI specific vars */
   --tui-accent: #38bdf8;
   --tui-accent-bg: rgba(56, 189, 248, 0.1);
@@ -68,7 +69,9 @@ body {
   align-items: center;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
@@ -167,7 +170,7 @@ code {
   outline: none;
   border-radius: 0;
   transition: border-bottom-color 0.2s, background-color 0.2s;
-  
+
   /* Cursor hacks */
   caret-color: var(--tui-accent);
   caret-shape: block;
@@ -179,7 +182,8 @@ code {
   border: 1px solid var(--tui-border);
   padding: 12px;
   margin-top: 8px;
-  background-color: rgba(15, 23, 42, 0.5); /* subtle background for text area */
+  background-color: rgba(15, 23, 42, 0.5);
+  /* subtle background for text area */
 }
 
 .tui-form input:focus,
@@ -213,7 +217,8 @@ code {
   -webkit-font-smoothing: none;
 }
 
-.tui-button:hover, .tui-button:focus {
+.tui-button:hover,
+.tui-button:focus {
   background-color: var(--tui-accent);
   color: var(--bg);
   border-color: var(--tui-accent);
@@ -230,13 +235,18 @@ code {
   border-color: transparent;
   color: #94a3b8;
 }
-.tui-link .tui-button:hover, .tui-link .tui-button:focus {
+
+.tui-link .tui-button:hover,
+.tui-link .tui-button:focus {
   background-color: transparent;
   color: var(--tui-accent);
   border-color: transparent;
 }
-.tui-link .tui-button:hover::before, .tui-link .tui-button:hover::after,
-.tui-link .tui-button:focus::before, .tui-link .tui-button:focus::after {
+
+.tui-link .tui-button:hover::before,
+.tui-link .tui-button:hover::after,
+.tui-link .tui-button:focus::before,
+.tui-link .tui-button:focus::after {
   color: var(--tui-accent);
 }
 
@@ -247,6 +257,7 @@ code {
   font-size: 13px;
   -webkit-font-smoothing: none;
 }
+
 .tui-error::before {
   content: "ERR: ";
 }
@@ -258,6 +269,7 @@ code {
   font-size: 13px;
   -webkit-font-smoothing: none;
 }
+
 .tui-success::before {
   content: "OK: ";
 }
@@ -292,13 +304,16 @@ code {
   -webkit-font-smoothing: none;
   max-width: 800px;
 }
+
 .tui-nav::before {
   content: "> ";
   color: var(--tui-accent);
   margin-right: 16px;
   font-weight: bold;
 }
-.tui-nav a, .tui-nav button {
+
+.tui-nav a,
+.tui-nav button {
   font-family: var(--font-fff);
   color: #94a3b8;
   text-decoration: none;
@@ -307,7 +322,10 @@ code {
   text-transform: uppercase;
   transition: color 0.1s;
 }
-.tui-nav a:hover, .tui-nav a:focus, .tui-nav a.active {
+
+.tui-nav a:hover,
+.tui-nav a:focus,
+.tui-nav a.active {
   color: var(--tui-accent);
 }
 
@@ -459,6 +477,7 @@ code {
   margin: 0;
   width: 100%;
 }
+
 .tui-post-card {
   font-family: var(--mono);
   border: 1px solid var(--tui-border);
@@ -467,6 +486,7 @@ code {
   text-align: left;
   background-color: #0c0f17;
 }
+
 .tui-post-card .tui-post-meta {
   font-size: 12px;
   color: var(--tui-text-muted);
@@ -475,12 +495,15 @@ code {
   display: flex;
   justify-content: space-between;
 }
+
 .tui-post-card .tui-post-author {
   color: var(--tui-accent);
 }
+
 .tui-post-card .tui-post-author::before {
   content: "@";
 }
+
 .tui-post-card h2 {
   font-family: var(--font-fff);
   font-size: 16px;
@@ -489,12 +512,14 @@ code {
   margin: 0 0 12px 0;
   -webkit-font-smoothing: none;
 }
+
 .tui-post-card p {
   font-size: 14px;
   color: #cbd5e1;
   line-height: 1.6;
   margin-bottom: 16px;
 }
+
 .tui-post-card img {
   max-width: 100%;
   border: 1px solid var(--tui-border);
@@ -511,7 +536,8 @@ code {
 .tui-like-button {
   font-family: var(--mono);
   background-color: transparent;
-  color: var(--text-h); /* Outline white */
+  color: var(--text-h);
+  /* Outline white */
   border: 1px solid var(--text-h);
   padding: 6px 12px;
   font-size: 13px;
@@ -524,18 +550,85 @@ code {
   -webkit-font-smoothing: none;
 }
 
-.tui-like-button:hover, .tui-like-button:focus {
+.tui-like-button:hover,
+.tui-like-button:focus {
   border-color: var(--tui-accent);
   color: var(--tui-accent);
 }
 
 .tui-like-button.liked {
-  background-color: #1e3a8a; /* Midnight blue */
+  background-color: #1e3a8a;
+  /* Midnight blue */
   border-color: #1e3a8a;
   color: var(--text-h);
 }
 
 .tui-like-button.liked:hover {
-  background-color: #172554; /* Darker midnight blue on hover */
+  background-color: #172554;
+  /* Darker midnight blue on hover */
   border-color: #172554;
+}
+
+/* --- TUI SETTINGS & CUSTOM FILE BUTTONS --- */
+.tui-settings-avatar-wrap {
+  margin-bottom: 16px;
+}
+
+.tui-settings-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 0;
+  border: 1px solid var(--tui-border);
+  object-fit: cover;
+  background-color: var(--code-bg);
+  display: block;
+}
+
+/* Hidden native file input */
+.tui-file-input {
+  display: none !important;
+}
+
+/* Container for styled file button and filename indicator */
+.tui-file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+/* Styled label acting as file button */
+.tui-file-btn {
+  font-family: var(--mono);
+  background-color: transparent;
+  color: var(--tui-accent);
+  border: 1px solid var(--tui-border);
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 0;
+  display: inline-block;
+  transition: all 0.1s;
+  white-space: nowrap;
+  -webkit-font-smoothing: none;
+  margin-top: 0 !important;
+}
+
+.tui-file-btn:hover {
+  background-color: var(--tui-accent);
+  color: var(--bg);
+  border-color: var(--tui-accent);
+}
+
+.tui-file-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--tui-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
 }

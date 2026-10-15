@@ -60,8 +60,23 @@ const UploadPost = () => {
                 <label htmlFor="content">Content</label>
                 <textarea name="content" onChange={(e) => handleContent(e)} value={content} placeholder="What's on your mind?" />
                 
-                <label htmlFor="image">Attach Image (Optional)</label>
-                <input name="image" onChange={e => handleImage(e)} type="file" />
+                <label>Attach Image (Optional)</label>
+                <div className="tui-file-row">
+                    <input 
+                        id="post-image-upload" 
+                        className="tui-file-input" 
+                        name="image" 
+                        onChange={e => handleImage(e)} 
+                        type="file" 
+                        accept="image/*"
+                    />
+                    <label htmlFor="post-image-upload" className="tui-file-btn">
+                        Choose Image
+                    </label>
+                    <span className="tui-file-name">
+                        {image ? image.name : "No file chosen"}
+                    </span>
+                </div>
                 
                 <button className="tui-button" type="submit">Upload Post</button>
                 
