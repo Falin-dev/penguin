@@ -48,6 +48,7 @@ function SettingsPage() {
                 setErr(message || "Failed to update profile")
             }
 
+            
             console.log("After fetch")
         }
         catch (error) {
