@@ -1,57 +1,58 @@
-import {fetchFeedPosts, uploadNewPost, likePost, removeLike} from "./post.service.js"
-const fetchPosts = async (req,res,next)=>{
-    try{
-        const {username} = req.user
-        const result = await fetchFeedPosts(username)
+import { fetchFeedPosts, uploadNewPost, likePost, removeLike } from "./post.service.js"
+const fetchPosts = async (req, res, next) => {
+    try {
+        const { username } = req.user
+        zz
+        const result = await fetchFeedPosts(username,page,limit)
         res.status(200).json(result)
-        
+
     }
-    catch(error){
+    catch (error) {
         next(error)
     }
 }
 
-const uploadPost = async(req,res,next)=>{
-    try{
-        const {username} = req.user
-        const {title,content} = req.body;
+const uploadPost = async (req, res, next) => {
+    try {
+        const { username } = req.user
+        const { title, content } = req.body;
         const imageFile = req.file;
         const postObject = {
             username,
             title,
             content,
-            imageFile : imageFile || null // Optional: explicitly convert undefined to null for clarity
+            imageFile: imageFile || null // Optional: explicitly convert undefined to null for clarity
         };
         const result = await uploadNewPost(postObject);
-        res.status(201).json({message:"Post created Successfully"})
+        res.status(201).json({ message: "Post created Successfully" })
     }
-    catch(error){
+    catch (error) {
         next(error)
     }
 }
 
-const postLike = async(req,res,next)=>{
-    try{
-        const {postId} = req.params
-        const {username} = req.user
-        const result = await likePost(postId,username)
-        res.status(201).json({message:"Post Liked"})
+const postLike = async (req, res, next) => {
+    try {
+        const { postId } = req.params
+        const { username } = req.user
+        const result = await likePost(postId, username)
+        res.status(201).json({ message: "Post Liked" })
     }
-    catch(error){
+    catch (error) {
         next(error)
     }
 }
 
-const deletePostLike = async(req,res,next)=>{
-    try{
-        const {postId} = req.params
-        const {username} = req.user
-        const result = await removeLike(postId,username)
-        res.status(200).json({message:"Post Unliked"})
+const deletePostLike = async (req, res, next) => {
+    try {
+        const { postId } = req.params
+        const { username } = req.user
+        const result = await removeLike(postId, username)
+        res.status(200).json({ message: "Post Unliked" })
     }
-    catch(error){
+    catch (error) {
         next(error)
     }
 }
 
-export {fetchPosts,uploadPost, postLike, deletePostLike}
+export { fetchPosts, uploadPost, postLike, deletePostLike }

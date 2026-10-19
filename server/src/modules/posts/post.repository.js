@@ -1,6 +1,9 @@
 import pool from "../../config/database.js";
 
-const getPosts = async (username) => {
+const getPosts = async (username,offset,limit) => {
+
+    
+
     const query = `
     SELECT  u.name,p.id,p.title,p.image_url,p.content,p.posted_at, COUNT(l.post_id) as likes, EXISTS(
         SELECT 1
@@ -17,10 +20,17 @@ const getPosts = async (username) => {
     p.image_url, 
     p.content, 
     p.posted_at
-    order by posted_at desc;
+    order by posted_at desc
+    limit $2 offset $3
+    ;
+    `;
+
+    const paginationQuery = `
+    SELECT COUNT(*) FROM posts
     `
-    const result = await pool.query(query,[username]);
-    return result;
+    const result = await pool.query(query,[username,limit, offset]);
+    const paginationDetails = await pool.query(paginationQuery)
+    return {result:result, count:paginationDetails};
 }
 
 

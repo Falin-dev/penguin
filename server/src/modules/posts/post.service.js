@@ -5,8 +5,14 @@ import { SUPABASE_URL, SUPABASE_KEY } from "../../config/env.js";
 const supabase = createClient(
     SUPABASE_URL, SUPABASE_KEY
 )
-const fetchFeedPosts = async (username) => {
-    const result = await getPosts(username);
+const fetchFeedPosts = async (username,page,limit) => {
+    const pageLimit = parseInt(limit) || 10
+    const pageNumber = parseInt(page) || 1
+    
+    const offset = (pageNumber -1) * pageLimit
+    const result = await getPosts(username, offset,pageLimit);
+
+
     return result.rows;
 }
 
