@@ -36,7 +36,6 @@ const uploadNewPost = async (postObject) => {
 }
 
 
-
 const likePost = async(postId,username)=>{
     const result = await insertLike(postId,username)
     return result
