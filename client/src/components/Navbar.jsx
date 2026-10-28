@@ -22,6 +22,7 @@ const Navbar = () => {
                     <ProfileDropDown />
                 </div>
             )}
+            
         </nav>
     )
 }
