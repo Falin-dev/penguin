@@ -23,6 +23,7 @@ const Navbar = () => {
                 </div>
             )}
             
+            
         </nav>
     )
 }
