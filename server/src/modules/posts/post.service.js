@@ -16,6 +16,7 @@ const fetchFeedPosts = async (username,page,limit) => {
     return result.rows;
 }
 
+
 const uploadNewPost = async (postObject) => {
 
     let imageUrl = null;
